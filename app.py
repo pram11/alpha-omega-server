@@ -36,5 +36,18 @@ def getToken():
 			json_d=json.load(jf)
 		return jsonify(json_d['token'])
 
+@app.route('/initialize',methods=['POST'])
+def Initialize():
+	with open('./status.json',encoding='utf-8') as json_file:
+		json_data = json.load(json_file)
+	if request.method=='POST':
+		json_data['token']=None
+		json_data['status']='normal'
+		with open('./status.json','w',encoding='utf-8') as js_w:
+			json.dump(json_data,js_w)
+		print("server initialized")
+		return jsonify(message="server initialized!")
+
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port=8995,debug=True)
