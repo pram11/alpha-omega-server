@@ -30,7 +30,9 @@ def getToken():
 		print(request.get_json())
 		json_request = request.get_json()
 		print(json_request['status'])
-		return jsonify(json_data['status'])
+		with open('./status.json','w',encoding='utf-8')as jf:
+			json_d=json.load(jf)
+		return jsonify(json_d['token'])
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port=8995,debug=True)
