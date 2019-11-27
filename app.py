@@ -28,8 +28,6 @@ def getToken():
 			json.dump(json_data,js_w)
 		print("getToken")
 		print(request.get_json())
-		json_request = request.get_json()
-		print(json_request['status'])
 		with open('./status.json','w',encoding='utf-8')as jf:
 			json_d=json.load(jf)
 		return jsonify(json_d['token'])
