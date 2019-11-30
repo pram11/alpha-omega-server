@@ -33,6 +33,7 @@ while True:
     print(val.decode())
     if (val.decode()=="arduino:fire\r\n"):
         json_data['status']='fire'
+        json_data['token']=json_data['token']
         pushrequest.push()
         with open('./status.json','w',encoding='utf-8') as js_w:
             json.dump(json_data,js_w)
