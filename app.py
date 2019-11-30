@@ -15,7 +15,7 @@ def status():
 			json.dump(json_data,js_w)
 
 		print(json_request)
-		return jsonify(sataus=json_data['status'])
+		return jsonify(status=json_data['status'])
 	elif request.method=="GET":
 		return jsonify(json_data) 
 
@@ -50,4 +50,4 @@ def Initialize():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0',port=8995,debug=True)
+	app.run(host='0.0.0.0',port=80,debug=False)

@@ -1,0 +1,6 @@
+POST http://0.0.0.0:8995/status HTTP/1.1
+content-type: application/json
+
+{
+    "status": "normal"
+}
