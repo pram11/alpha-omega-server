@@ -1,7 +1,7 @@
 import serial
 import time
 import json
-
+import pushrequest
 
 ser = serial.Serial(
     port="/dev/ttyUSB0",
@@ -33,6 +33,7 @@ while True:
     print(val.decode())
     if (val.decode()=="arduino:fire\r\n"):
         json_data['status']='fire'
+        pushrequest.push()
         with open('./status.json','w',encoding='utf-8') as js_w:
             json.dump(json_data,js_w)
         status='fire'
