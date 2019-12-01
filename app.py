@@ -47,6 +47,7 @@ def Initialize():
 		json_data['token']=token
 		json_data['is_escaped']=False
 		json_data['pushed']=False
+		
 		with open('./status.json','w',encoding='utf-8') as js_w:
 			json.dump(json_data,js_w)
 		print("server initialized")
