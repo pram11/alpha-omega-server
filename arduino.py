@@ -19,7 +19,9 @@ while True:
         json_data = json.load(json_file)
     print("file_status:"+json_data['status'])
     print("status:"+status)
+    print(json_data)
     if json_data['is_escaped']==True:
+        print("is escaped")
         ser.write('server:escaped\n'.encode())
     if not status == json_data['status']:
         print("status")
