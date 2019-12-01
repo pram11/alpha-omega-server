@@ -12,7 +12,7 @@ val=''
 #signal_from {server,arduino,none}
 singal_from = 'none'
 escaped_status = False
-push_status = False
+push_initial = True
 
 while True:
     print("status checking start")
@@ -52,14 +52,7 @@ while True:
         json_data['status']='fire'
         token = json_data['token']
         json_data['token']=token
-        if json_data['pushed']!=push_status:
-            if json_data['pushed']==True:
-                print("pushed")
-                pushrequest.push()
-                push_status = True
-            else:
-                push_status = False
-        json_data['pushed'] = True
+        pushrequest.push()
         with open('./status.json','w',encoding='utf-8') as js_w:
             json.dump(json_data,js_w)
         status='fire'
