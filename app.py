@@ -10,6 +10,7 @@ def status():
 	if request.method=="POST":
 		print(request.get_json(force=True))
 		json_request = request.get_json()
+		json_data['status']='fire'
 		with open('./status.json','w',encoding='utf-8')as js_w:
 			json.dump(json_data,js_w)
 
