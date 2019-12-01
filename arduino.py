@@ -1,6 +1,6 @@
 import serial
 import json
-from pushrequest import push
+import pushrequest
 ser = serial.Serial(
     port="/dev/ttyUSB0",
     baudrate=9600,
@@ -51,7 +51,7 @@ while True:
         json_data['status']='fire'
         token = json_data['token']
         json_data['token']=token
-        push()
+        pushrequest.push()
         with open('./status.json','w',encoding='utf-8') as js_w:
             json.dump(json_data,js_w)
         status='fire'
