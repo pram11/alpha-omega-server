@@ -11,7 +11,9 @@ def push():
     try:
         response = push_service.notify_single_device(registration_id=json_data['token'],
                                                   message_title='화재발생',
-                                                  message_body='화재가 발생하였습니다. 대피 바랍니다.')
+                                                  message_body='화재가 발생하였습니다. 대피 바랍니다.',
+                                                     sound='Default'
+                                                     )
     except errors.InvalidDataError:
         print("error:push invalid data")
         return None
