@@ -16,7 +16,3 @@ def push():
         return None
     else:
         return response
-
-
-push()
-print("ok")
