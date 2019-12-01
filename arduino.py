@@ -46,9 +46,7 @@ while True:
         val = ser.readline()
     except serial.SerialException:
         print("serial exception occured")
-    print(val)
-    print("arduino:fire\r\n".encode())
-    if (val.decode()=="arduino:fire"):
+    if (val=="arduino:fire\r\n".decode):
         print("fire on arduino")
         pushrequest.push()
         json_data['status']='fire'
