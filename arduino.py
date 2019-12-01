@@ -48,10 +48,11 @@ while True:
         print("serial exception occured")
     print(val.decode())
     if (val.decode()=="arduino:fire\n"):
+        print("fire on arduino")
+        pushrequest.push()
         json_data['status']='fire'
         token = json_data['token']
         json_data['token']=token
-        pushrequest.push()
         with open('./status.json','w',encoding='utf-8') as js_w:
             json.dump(json_data,js_w)
         status='fire'
