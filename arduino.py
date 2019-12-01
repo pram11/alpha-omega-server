@@ -20,7 +20,7 @@ while True:
     print("file_status:"+json_data['status'])
     print("status:"+status)
     if json_data['is_escaped']==True:
-        ser.write('server:escaped')
+        ser.write('server:escaped\n'.encode())
     if not status == json_data['status']:
         print("status")
         if json_data['status']=='fire':
