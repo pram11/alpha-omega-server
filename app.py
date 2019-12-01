@@ -39,9 +39,11 @@ def getToken():
 def Initialize():
 	with open('./status.json',encoding='utf-8') as json_file:
 		json_data = json.load(json_file)
+		print("token:"+json_data['token'])
+		token = json_data['token']
 	if request.method=='POST':
 		json_data['status']='normal'
-		json_data['token']=json_data['token']
+		json_data['token']=token
 		json_data['is_escaped']=False
 		json_data['pushed']=False
 		with open('./status.json','w',encoding='utf-8') as js_w:
