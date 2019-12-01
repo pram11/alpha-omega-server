@@ -27,6 +27,7 @@ def getToken():
 	if request.method=="POST":
 		json_request = request.get_json()
 		print(json_request)
+		json_data['token']= json_request['token']
 		with open('./status.json','w',encoding='utf-8')as js_w:
 			json.dump(json_data,js_w)
 		print("getToken")
