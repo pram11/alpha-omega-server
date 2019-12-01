@@ -11,6 +11,7 @@ def push():
                                                   message_title='화재발생',
                                                   message_body='화재가 발생하였습니다. 대피 바랍니다.')
     except errors.InvalidDataError:
+        print("error:push invalid data")
         return None
     else:
         return response
