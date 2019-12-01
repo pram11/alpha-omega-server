@@ -24,6 +24,9 @@ while True:
             print("server:escaped")
             ser.write('server:escaped\n'.encode())
             escaped_status = json_data['is_escaped']
+        if json_data['is_escaped']==False:
+            print("set escaped data initialize")
+            escaped_status = False
 
     if not status == json_data['status']:
     #json 파일 내의 상태가 status 변수의 상태와 다를때
@@ -48,6 +51,7 @@ while True:
         json_data['status']='fire'
         json_data['token']=json_data['token']
         if json_data['pushed']==False:
+            print("pushed")
             pushrequest.push()
         json_data['pushed'] = True
         with open('./status.json','w',encoding='utf-8') as js_w:
