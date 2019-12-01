@@ -10,7 +10,6 @@ def status():
 	if request.method=="POST":
 		print(request.get_json(force=True))
 		json_request = request.get_json()
-		json_data['status'] = json_request['status']
 		with open('./status.json','w',encoding='utf-8')as js_w:
 			json.dump(json_data,js_w)
 
@@ -27,7 +26,6 @@ def getToken():
 	if request.method=="POST":
 		json_request = request.get_json()
 		print(json_request)
-		json_data['token']=json_request['token']
 		with open('./status.json','w',encoding='utf-8')as js_w:
 			json.dump(json_data,js_w)
 		print("getToken")
@@ -41,12 +39,25 @@ def Initialize():
 	with open('./status.json',encoding='utf-8') as json_file:
 		json_data = json.load(json_file)
 	if request.method=='POST':
-		json_data['token']=None
 		json_data['status']='normal'
+		json_data['token']=json_data['token']
+		json_data['is_escaped']=False
 		with open('./status.json','w',encoding='utf-8') as js_w:
 			json.dump(json_data,js_w)
 		print("server initialized")
 		return jsonify(message="server initialized!")
+
+
+@app.route('/escaped',methods=['POST'])
+def Escaped():
+	with open('./status.json',encoding='utf-8') as json_file:
+		json_data = json.load(json_file)
+	if request.method=="POST":
+		json_data['is_escaped']=True
+		with open('./status.json','w',encoding='utf-8') as js_w:
+			json.dump(json_data,js_w)
+		print("escape complete")
+		return jsonify(message="escaped!")
 
 
 if __name__ == '__main__':

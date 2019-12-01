@@ -1,5 +1,4 @@
 import serial
-import time
 import json
 import pushrequest
 
@@ -20,6 +19,8 @@ while True:
         json_data = json.load(json_file)
     print("file_status:"+json_data['status'])
     print("status:"+status)
+    if json_data['is_escaped']==True:
+        ser.write('server:escaped')
     if not status == json_data['status']:
         print("status")
         if json_data['status']=='fire':
@@ -29,13 +30,16 @@ while True:
         print(ser.readline())
         status = json_data['status']
     val = ser.readline()
-
     print(val.decode())
     if (val.decode()=="arduino:fire\r\n"):
         json_data['status']='fire'
         json_data['token']=json_data['token']
-        pushrequest.push()
+        if json_data['pushed']==False:
+            pushrequest.push()
+        json_data['pushed'] = True
         with open('./status.json','w',encoding='utf-8') as js_w:
             json.dump(json_data,js_w)
         status='fire'
     print("turn end!")
+
+

@@ -1,6 +1,21 @@
-POST http://0.0.0.0:8995/status HTTP/1.1
+POST http://0.0.0.0:80/escaped HTTP/1.1
 content-type: application/json
 
 {
-    "status": "normal"
 }
+
+###
+POST http://0.0.0.0:80/initialize HTTP/1.1
+content-type: application/json
+
+###
+POST http://0.0.0.0:80/initialize HTTP/1.1
+content-type: application/json
+
+
+###
+POST http://0.0.0.0:80/initialize HTTP/1.1
+content-type: application/json
+
+###
+
