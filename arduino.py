@@ -15,24 +15,33 @@ escaped_status = False
 
 while True:
     print("status checking start")
+    #status 파일 읽음
     with open('./status.json', encoding='utf-8') as json_file:
         json_data = json.load(json_file)
-    print("file_status:"+json_data['status'])
-    print("status:"+status)
-    print(json_data)
+
     if escaped_status != json_data['is_escaped']:
-        if json_data['is_escaped']==True:
+        if json_data['is_escaped'] == True:
             print("is escaped")
-            ser.write('server:escaped\n'.encode())
+            ser.write('server:escaped\r\n'.encode())
+
     if not status == json_data['status']:
+    #json 파일 내의 상태가 status 변수의 상태와 다를때
         print("status")
+        #화재일경우
         if json_data['status']=='fire':
-            ser.write('server:fire\n'.encode())
+            print("server:fire")
+            ser.write('server:fire\r\n'.encode())
+        #아두이노에 server:fire 보냄
         elif json_data['status']=='normal':
-            ser.write('server:normal\n'.encode())
-        print(ser.readline())
+            print("server:normal")
+            ser.write('server:normal\r\n'.encode())
+        #아두이노에 server:normal 보냄
         status = json_data['status']
-    val = ser.readline()
+        #파일에 맞춤
+    try:
+        val = ser.readline()
+    except serial.SerialException:
+        print("serial exception occured")
     print(val.decode())
     if (val.decode()=="arduino:fire\r\n"):
         json_data['status']='fire'
